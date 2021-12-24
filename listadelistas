@@ -1,0 +1,72 @@
+class nodo{
+    constructor(valor){
+        this.dato = valor;
+        this.siguiente = null;
+        this.anterior = null;
+        this.listaNumerica = new lista();
+    }
+}
+
+class lista{
+    constructor(){
+        this.primero=null;
+    }
+
+    insertar(dato){
+        let nuevo = new nodo(dato);
+        if(this.primero == null){ //la lista esta vacia
+            this.primero = nuevo;
+        }else{
+            let temp = this.primero;
+            while(temp.siguiente != null){
+                if(temp.dato==dato){
+                    console.log("No se puede insertar, ya existe el valor en la lista");
+                    return
+                }
+                temp = temp.siguiente;
+            };
+            if(temp.dato==dato){
+                console.log("No se puede insertar, ya existe el valor en la lista");
+                return
+            }
+            temp.siguiente = nuevo;
+            nuevo.anterior = temp;
+        }
+    }
+    mostrar(){
+        let temp = this.primero;
+        console.log("---- Mostar Lista Nombre ----")
+        while(temp != null){
+            var valor = temp.dato;
+            console.log('* '+valor);
+            temp = temp.siguiente;
+        }
+    }
+
+    insertarEnListaNumerica(buscarValor, valor){
+        let temp = this.primero;
+        while(temp != null){
+            if(buscarValor == temp.dato){
+                temp.lista.insertar(valor);
+                break;
+            }else{
+                temp = temp.siguiente;
+            }
+        }
+    }
+
+    mostrarlistaNumerica(){
+        let temp = this.primero;
+        console.log("---- Mostar Lista Numerica ----")
+        while(temp != null){
+            var valor = temp.dato;
+            console.log('**'+valor);
+            let temp2 = temp.lista.primero;
+            while(temp2 != null){
+                console.log("   -"+temp2.dato);
+                temp2 = temp2.siguiente;
+            }
+            temp = temp.siguiente;
+        }
+    }
+}
